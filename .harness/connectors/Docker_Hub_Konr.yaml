@@ -1,0 +1,16 @@
+connector:
+  name: Docker Hub Konr
+  identifier: Docker_Hub_Konr
+  description:
+  orgIdentifier: default
+  projectIdentifier: Bank_of_Harness
+  type: DockerRegistry
+  spec:
+    dockerRegistryUrl: https://registry.hub.docker.com/v2/
+    providerType: DockerHub
+    auth:
+      type: UsernamePassword
+      spec:
+        username: konrness
+        usernameRef: null
+        passwordRef: dockerhubkonrness
