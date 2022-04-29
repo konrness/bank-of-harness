@@ -44,4 +44,4 @@ template:
         variables:
             - name: service
               type: String
-              value: contacts
+              value: <+input>
