@@ -22,7 +22,7 @@ pipeline:
                                 identifier: ls
                                 spec:
                                     connectorRef: Docker_Hub_Konr
-                                    image: python
+                                    image: python:3.8
                                     shell: Sh
                                     command: |
                                         echo "testing $SERVICE..."
