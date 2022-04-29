@@ -18,13 +18,25 @@ pipeline:
                       steps:
                           - step:
                                 type: Run
-                                name: ls
+                                name: Python Build
                                 identifier: ls
                                 spec:
                                     connectorRef: Docker_Hub_Konr
-                                    image: alpine
+                                    image: qnib/pytest
                                     shell: Sh
-                                    command: ls
+                                    command: |
+                                        echo "testing $SERVICE..."
+
+                                        pip install --upgrade pip
+                                        pip install -r requirements.txt
+                                        python -m pytest -v -p no:warnings --junitxml=report.xml
+                                    reports:
+                                        type: JUnit
+                                        spec:
+                                            paths:
+                                                - report.xml
+                                    envVariables:
+                                        SERVICE: contacts
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
