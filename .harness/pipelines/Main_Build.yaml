@@ -36,7 +36,7 @@ pipeline:
                                         type: JUnit
                                         spec:
                                             paths:
-                                                - report.xml
+                                                - src/contacts/report.xml
                                     envVariables:
                                         SERVICE: contacts
     projectIdentifier: Bank_of_Harness
