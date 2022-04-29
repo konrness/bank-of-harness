@@ -1,0 +1,12 @@
+connector:
+  name: konr-se GKE Bank of Harness
+  identifier: konrse_GKE_Bank_of_Harness
+  description:
+  orgIdentifier: default
+  projectIdentifier: Bank_of_Harness
+  type: K8sCluster
+  spec:
+    credential:
+      type: InheritFromDelegate
+    delegateSelectors:
+    - konr-se-gke-bankofharness
