@@ -27,6 +27,8 @@ pipeline:
                                     command: |
                                         echo "testing $SERVICE..."
 
+                                        cd src/$SERVICE
+
                                         pip install --upgrade pip
                                         pip install -r requirements.txt
                                         python -m pytest -v -p no:warnings --junitxml=report.xml
