@@ -3,18 +3,31 @@ pipeline:
     identifier: Main_Build
     allowStageExecutions: false
     stages:
-        - stage:
-              name: Contacts - Build
-              identifier: Build
-              template:
-                  templateRef: Python_Build
-                  versionLabel: "1"
-                  templateInputs:
-                      type: CI
-                      variables:
-                          - name: service
-                            type: String
-                            value: contacts
+        - parallel:
+              - stage:
+                    name: Contacts - Build
+                    identifier: Build
+                    template:
+                        templateRef: Python_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: contacts
+              - stage:
+                    name: User Service - Build
+                    identifier: User_Service_Build
+                    template:
+                        templateRef: Python_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: userservice
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
