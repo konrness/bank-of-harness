@@ -26,9 +26,9 @@ pipeline:
                                     image: python:3.8
                                     shell: Sh
                                     command: |
-                                        echo "testing $SERVICE..."
+                                        echo "testing <+Build.variables.service>..."
 
-                                        cd src/$SERVICE
+                                        cd src/<+Build.variables.service>
 
                                         pip install --upgrade pip
                                         pip install -r requirements.txt
@@ -37,9 +37,9 @@ pipeline:
                                         type: JUnit
                                         spec:
                                             paths:
-                                                - src/contacts/report.xml
+                                                - src/<+Build.variables.service>/report.xml
                                     envVariables:
-                                        SERVICE: <+input>
+                                        SERVICE: <+Build.variables.service>
                                 failureStrategies: []
               variables:
                   - name: service
