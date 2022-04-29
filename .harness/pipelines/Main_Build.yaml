@@ -41,6 +41,10 @@ pipeline:
                                     envVariables:
                                         SERVICE: <+input>
                                 failureStrategies: []
+              variables:
+                  - name: service
+                    type: String
+                    value: contacts
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
