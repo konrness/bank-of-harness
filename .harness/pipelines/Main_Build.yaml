@@ -4,7 +4,7 @@ pipeline:
     allowStageExecutions: false
     stages:
         - stage:
-              name: "Build "
+              name: Python Build
               identifier: Build
               type: CI
               spec:
@@ -14,12 +14,13 @@ pipeline:
                       spec:
                           connectorRef: konrse_GKE_Bank_of_Harness
                           namespace: bankofharness-builds
+                          automountServiceAccountToken: true
                   execution:
                       steps:
                           - step:
                                 type: Run
                                 name: Python Build
-                                identifier: ls
+                                identifier: pythonbuild
                                 spec:
                                     connectorRef: Docker_Hub_Konr
                                     image: python:3.8
@@ -38,7 +39,8 @@ pipeline:
                                             paths:
                                                 - src/contacts/report.xml
                                     envVariables:
-                                        SERVICE: contacts
+                                        SERVICE: <+input>
+                                failureStrategies: []
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
