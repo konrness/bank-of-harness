@@ -1,0 +1,22 @@
+connector:
+  name: konrness-bank-of-harness
+  identifier: konrnessbankofharness
+  description:
+  orgIdentifier: default
+  projectIdentifier: Bank_of_Harness
+  type: Github
+  spec:
+    url: https://github.com/konrness/bank-of-harness
+    authentication:
+      type: Http
+      spec:
+        type: UsernameToken
+        spec:
+          username: konrness
+          tokenRef: githubkonrness
+    apiAccess:
+      type: Token
+      spec:
+        tokenRef: githubkonrness
+    executeOnDelegate: false
+    type: Repo
