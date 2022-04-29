@@ -4,47 +4,11 @@ pipeline:
     allowStageExecutions: false
     stages:
         - stage:
-              name: Python Build
+              name: Contacts - Build
               identifier: Build
-              type: CI
-              spec:
-                  cloneCodebase: true
-                  infrastructure:
-                      type: KubernetesDirect
-                      spec:
-                          connectorRef: konrse_GKE_Bank_of_Harness
-                          namespace: bankofharness-builds
-                          automountServiceAccountToken: true
-                  execution:
-                      steps:
-                          - step:
-                                type: Run
-                                name: Python Build
-                                identifier: pythonbuild
-                                spec:
-                                    connectorRef: Docker_Hub_Konr
-                                    image: python:3.8
-                                    shell: Sh
-                                    command: |
-                                        echo "testing <+Build.variables.service>..."
-
-                                        cd src/<+Build.variables.service>
-
-                                        pip install --upgrade pip
-                                        pip install -r requirements.txt
-                                        python -m pytest -v -p no:warnings --junitxml=report.xml
-                                    reports:
-                                        type: JUnit
-                                        spec:
-                                            paths:
-                                                - src/<+Build.variables.service>/report.xml
-                                    envVariables:
-                                        SERVICE: <+Build.variables.service>
-                                failureStrategies: []
-              variables:
-                  - name: service
-                    type: String
-                    value: contacts
+              template:
+                  templateRef: Python_Build
+                  versionLabel: "1"
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
