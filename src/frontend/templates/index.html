@@ -464,6 +464,38 @@ limitations under the License.
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+      
+      <script type="module">
+        import { initialize, Event } from 'https://unpkg.com/@harnessio/ff-javascript-client-sdk/dist/sdk.client.js';
+  
+        var cf = initialize(
+          '{{ config.HARNESS_FF_SDK_KEY }}',
+          {
+            identifier: '{{ account_id }}',
+            name: '{{ name }}',
+            attributes: {
+              lastUpdated: Date(),
+              host: location.href,
+            }
+          }
+        )
+  
+        cf.on(Event.READY, flags => {
+          console.log(JSON.stringify(flags, null, 2))
+        })
+  
+        cf.on(Event.CHANGED, flagInfo => {
+          if (flagInfo.deleted) {
+            console.log('Flag is deleted')
+            console.log(JSON.stringify(flagInfo, null, 2))
+          } else {
+            console.log('Flag is changed')
+            console.log(JSON.stringify(flagInfo, null, 2))
+          }
+        })
+      </script>
+      
+      
       <script>
         document.addEventListener("DOMContentLoaded", function(event) {
           // Deposit modal client-side validation
