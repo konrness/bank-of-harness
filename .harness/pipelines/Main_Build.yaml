@@ -86,6 +86,21 @@ pipeline:
                                 - name: runTests
                                   type: String
                                   value: "false"
+              - stage:
+                    name: Load Generator - Build
+                    identifier: Load_Generator_Build
+                    template:
+                        templateRef: Python_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: loadgenerator
+                                - name: runTests
+                                  type: String
+                                  value: "false"
         - parallel:
               - stage:
                     name: Balance Reader - Build
