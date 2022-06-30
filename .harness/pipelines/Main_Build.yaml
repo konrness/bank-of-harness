@@ -14,6 +14,12 @@ pipeline:
                       spec:
                           connectorRef: konrse_GKE_Bank_of_Harness
                           namespace: bankofharness-builds
+                          volumes:
+                              - mountPath: /root/.m2
+                                type: HostPath
+                                spec:
+                                    path: /tmp/.m2
+                                    type: DirectoryOrCreate
                           automountServiceAccountToken: false
                           nodeSelector: {}
                           os: Linux
@@ -28,9 +34,12 @@ pipeline:
                                     image: alpine
                                     shell: Sh
                                     command: ls
+                  sharedPaths:
+                      - ""
               when:
                   pipelineStatus: Success
                   condition: true == false
+              variables: []
         - parallel:
               - stage:
                     name: Contacts - Build
