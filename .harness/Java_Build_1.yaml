@@ -46,9 +46,9 @@ template:
                                   cd src/<+stage.variables.service>
 
                                   mvn compile jib:build \
-                                      -Djib.to.image=konrness/bank-of-harness-<+stage.variables.service>:<+pipeline.sequenceId>
+                                      -Djib.to.image=konrness/bank-of-harness-<+stage.variables.service>:<+pipeline.sequenceId> \
                                       -Djib.to.auth.username=$DOCKER_USERNAME \
-                                      -Djib.to.auth.password=$DOCKER_PASSWORD
+                                      -Djib.to.auth.password=$DOCKER_PASSWORD \
                                       -Djib.to.tags=latest
         variables:
             - name: service
