@@ -28,12 +28,28 @@ template:
                               image: python:3.8
                               shell: Sh
                               command: |
-                                  echo "testing <+stage.variables.service>..."
+                                  echo "building <+stage.variables.service>..."
 
                                   cd src/<+stage.variables.service>
 
                                   pip install --upgrade pip
                                   pip install -r requirements.txt
+                              envVariables:
+                                  SERVICE: <+stage.variables.service>
+                          failureStrategies: []
+                    - step:
+                          type: Run
+                          name: Python Test
+                          identifier: pythontest
+                          spec:
+                              connectorRef: Docker_Hub_Konr
+                              image: python:3.8
+                              shell: Sh
+                              command: |
+                                  echo "testing <+stage.variables.service>..."
+
+                                  cd src/<+stage.variables.service>
+
                                   python -m pytest -v -p no:warnings --junitxml=report.xml
                               reports:
                                   type: JUnit
