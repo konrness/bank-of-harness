@@ -43,7 +43,7 @@ pipeline:
         - parallel:
               - stage:
                     name: Contacts - Build
-                    identifier: Build
+                    identifier: Contacts_Build
                     template:
                         templateRef: Python_Build
                         versionLabel: "1"
