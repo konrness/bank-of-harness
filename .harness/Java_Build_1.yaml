@@ -35,6 +35,19 @@ template:
                               envVariables:
                                   SERVICE: <+stage.variables.service>
                     - step:
+                          type: Run
+                          name: Build Image
+                          identifier: Build_Image
+                          spec:
+                              connectorRef: Docker_Hub_Konr
+                              image: maven:3.6.3
+                              shell: Bash
+                              command: |-
+                                  mvn jib:build \
+                                      -Djib.to.image=konrness/bank-of-harness-<+stage.variables.service>
+                                      -Djib.to.auth.username=$DOCKER_USERNAME \
+                                      -Djib.to.auth.password=$DOCKER_PASSWORD
+                    - step:
                           type: BuildAndPushDockerRegistry
                           name: Docker Build and Push
                           identifier: Docker_Build_and_Push
@@ -52,3 +65,9 @@ template:
             - name: service
               type: String
               value: <+input>
+            - name: DOCKER_USERNAME
+              type: String
+              value: konrness
+            - name: DOCKER_PASSWORD
+              type: Secret
+              value: dockerhubkonrness
