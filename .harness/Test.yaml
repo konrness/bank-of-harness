@@ -26,6 +26,18 @@ pipeline:
                                     image: alpine
                                     shell: Sh
                                     command: ls
+        - stage:
+              name: Build Java Test
+              identifier: Build_Java_Test
+              template:
+                  templateRef: Java_Build
+                  versionLabel: "1"
+                  templateInputs:
+                      type: CI
+                      variables:
+                          - name: service
+                            type: String
+                            value: ledgerwriter
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
