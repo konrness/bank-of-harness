@@ -27,30 +27,19 @@ template:
                               connectorRef: Docker_Hub_Konr
                               image: python:3.8
                               shell: Sh
-                              command: |
+                              command: |-
                                   echo "building <+stage.variables.service>..."
 
                                   cd src/<+stage.variables.service>
 
                                   pip install --upgrade pip
                                   pip install -r requirements.txt
-                              envVariables:
-                                  SERVICE: <+stage.variables.service>
-                          failureStrategies: []
-                    - step:
-                          type: Run
-                          name: Python Test
-                          identifier: pythontest
-                          spec:
-                              connectorRef: Docker_Hub_Konr
-                              image: python:3.8
-                              shell: Sh
-                              command: |
-                                  echo "testing <+stage.variables.service>..."
 
-                                  cd src/<+stage.variables.service>
+                                  if [ "$RUN_TESTS" == "true" ]
 
-                                  python -m pytest -v -p no:warnings --junitxml=report.xml
+                                      python -m pytest -v -p no:warnings --junitxml=report.xml
+
+                                  fi
                               reports:
                                   type: JUnit
                                   spec:
@@ -58,12 +47,8 @@ template:
                                           - src/<+stage.variables.service>/report.xml
                               envVariables:
                                   SERVICE: <+stage.variables.service>
+                                  RUN_TESTS: <+stage.variables.runTests>
                           failureStrategies: []
-                          when:
-                              stageStatus: Success
-                              condition: <+stage.variables.runTests> == "true"
-            sharedPaths:
-                - /usr/local/lib/python3.8/site-packages
         variables:
             - name: service
               type: String
