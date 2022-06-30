@@ -1,0 +1,36 @@
+template:
+    name: Java Build
+    identifier: Java_Build
+    versionLabel: "1"
+    type: Stage
+    projectIdentifier: Bank_of_Harness
+    orgIdentifier: default
+    spec:
+        type: CI
+        spec:
+            cloneCodebase: true
+            infrastructure:
+                useFromStage: Clone
+            execution:
+                steps:
+                    - step:
+                          type: Run
+                          name: Java Tests
+                          identifier: Java_Tests
+                          spec:
+                              connectorRef: Docker_Hub_Konr
+                              image: maven:3.8.5-openjdk-17
+                              shell: Sh
+                              command: |-
+                                  echo "testing <+Build.variables.service>..."
+
+                                  cd src/<+Build.variables.service>
+
+                                  mvn test
+                              reports:
+                                  type: JUnit
+                                  spec:
+                                      paths:
+                                          - src/<+Build.variables.service>/report.xml
+                              envVariables:
+                                  SERVICE: <+Build.variables.service>
