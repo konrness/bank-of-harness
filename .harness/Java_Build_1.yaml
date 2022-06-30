@@ -34,3 +34,7 @@ template:
                                           - src/<+Build.variables.service>/report.xml
                               envVariables:
                                   SERVICE: <+Build.variables.service>
+        variables:
+            - name: service
+              type: String
+              value: <+input>
