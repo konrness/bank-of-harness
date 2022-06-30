@@ -63,3 +63,7 @@ template:
             - name: service
               type: String
               value: <+input>
+            - name: runTests
+              type: String
+              default: "true"
+              value: <+input>.allowedValues(true,false)
