@@ -63,7 +63,7 @@ template:
                               stageStatus: Success
                               condition: <+stage.variables.runTests> == "true"
             sharedPaths:
-                - /usr/local/
+                - /usr/local/lib/python3.8/site-packages
         variables:
             - name: service
               type: String
