@@ -43,7 +43,7 @@ template:
                               image: maven:3.8.5-openjdk-17
                               shell: Bash
                               command: |-
-                                  cd <+stage.variables.service>
+                                  cd src/<+stage.variables.service>
 
                                   mvn compile jib:build \
                                       -Djib.to.image=konrness/bank-of-harness-<+stage.variables.service>:<+pipeline.sequenceId>
