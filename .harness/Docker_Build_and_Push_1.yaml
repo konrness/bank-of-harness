@@ -13,7 +13,7 @@ template:
             tags:
                 - <+pipeline.sequenceId>
             dockerfile: src/accounts-db/Dockerfile
-            context: src/accounts-db
+            context: src/<+input>
             labels:
                 pipeline: <+pipeline.name>
                 build_url: https://app.harness.io/ng/#/account/6C9qo5gJSdK7gb-ngOtpCw/ci/orgs/default/projects/Bank_of_Harness/pipelines/Main_Build/executions/<+pipeline.executionId>/pipeline
