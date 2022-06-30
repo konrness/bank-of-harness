@@ -22,18 +22,18 @@ template:
                               image: maven:3.8.5-openjdk-17
                               shell: Sh
                               command: |-
-                                  echo "testing <+Build.variables.service>..."
+                                  echo "testing <+stage.variables.service>..."
 
-                                  cd src/<+Build.variables.service>
+                                  cd src/<+stage.variables.service>
 
                                   mvn test
                               reports:
                                   type: JUnit
                                   spec:
                                       paths:
-                                          - src/<+Build.variables.service>/report.xml
+                                          - src/<+stage.variables.service>/report.xml
                               envVariables:
-                                  SERVICE: <+Build.variables.service>
+                                  SERVICE: <+stage.variables.service>
         variables:
             - name: service
               type: String
