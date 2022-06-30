@@ -36,9 +36,8 @@ template:
                                   pip install -r requirements.txt
 
                                   if [ "$RUN_TESTS" == "true" ]
-
+                                  then
                                       python -m pytest -v -p no:warnings --junitxml=report.xml
-
                                   fi
                               reports:
                                   type: JUnit
