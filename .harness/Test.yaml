@@ -18,3 +18,8 @@ pipeline:
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: konrnessbankofharness
+                build: <+input>
