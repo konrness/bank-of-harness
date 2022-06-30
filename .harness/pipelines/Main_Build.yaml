@@ -130,6 +130,7 @@ pipeline:
                                     repo: konrness/bank-of-harness-accounts-db
                                     tags:
                                         - <+pipeline.sequenceId>
+                                    dockerfile: src/accounts-db/Dockerfile
                                     context: src/accounts-db
                                     labels:
                                         pipeline: <+pipeline.name>
