@@ -1,7 +1,7 @@
 pipeline:
     name: Main Build
     identifier: Main_Build
-    allowStageExecutions: false
+    allowStageExecutions: true
     stages:
         - stage:
               name: Clone
@@ -168,3 +168,4 @@ pipeline:
             codebase:
                 connectorRef: konrnessbankofharness
                 build: <+input>
+    variables: []
