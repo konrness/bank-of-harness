@@ -47,20 +47,6 @@ template:
                                       -Djib.to.image=konrness/bank-of-harness-<+stage.variables.service>
                                       -Djib.to.auth.username=$DOCKER_USERNAME \
                                       -Djib.to.auth.password=$DOCKER_PASSWORD
-                    - step:
-                          type: BuildAndPushDockerRegistry
-                          name: Docker Build and Push
-                          identifier: Docker_Build_and_Push
-                          spec:
-                              connectorRef: Docker_Hub_Konr
-                              repo: konrness/bank-of-harness-<+stage.variables.service>
-                              tags:
-                                  - <+pipeline.sequenceId>
-                              dockerfile: src/<+stage.variables.service>/Dockerfile
-                              context: src/<+stage.variables.service>
-                              labels:
-                                  pipeline: <+pipeline.name>
-                                  build_url: https://app.harness.io/ng/#/account/6C9qo5gJSdK7gb-ngOtpCw/ci/orgs/default/projects/Bank_of_Harness/pipelines/Main_Build/executions/<+pipeline.executionId>/pipeline
         variables:
             - name: service
               type: String
