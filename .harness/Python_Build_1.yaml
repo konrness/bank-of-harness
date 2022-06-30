@@ -62,6 +62,8 @@ template:
                           when:
                               stageStatus: Success
                               condition: <+stage.variables.runTests> == "true"
+            sharedPaths:
+                - /usr/local/
         variables:
             - name: service
               type: String
