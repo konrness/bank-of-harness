@@ -22,6 +22,7 @@ template:
                               repo: konrness/bank-of-harness-<+stage.variables.service>
                               tags:
                                   - <+pipeline.sequenceId>
+                                  - latest
                               dockerfile: src/<+stage.variables.service>/Dockerfile
                               context: src/<+stage.variables.service>
                               labels:
