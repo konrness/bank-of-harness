@@ -28,6 +28,9 @@ pipeline:
                                     image: alpine
                                     shell: Sh
                                     command: ls
+              when:
+                  pipelineStatus: Success
+                  condition: true == false
         - parallel:
               - stage:
                     name: Contacts - Build
