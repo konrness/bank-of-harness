@@ -19,11 +19,11 @@ template:
                           identifier: Docker_Build_and_Push
                           spec:
                               connectorRef: Docker_Hub_Konr
-                              repo: konrness/bank-of-harness-accounts-db
+                              repo: konrness/bank-of-harness-<+stage.variables.service>
                               tags:
                                   - <+pipeline.sequenceId>
-                              dockerfile: src/accounts-db/Dockerfile
-                              context: src/accounts-db
+                              dockerfile: src/<+stage.variables.service>/Dockerfile
+                              context: src/<+stage.variables.service>
                               labels:
                                   pipeline: <+pipeline.name>
                                   build_url: https://app.harness.io/ng/#/account/6C9qo5gJSdK7gb-ngOtpCw/ci/orgs/default/projects/Bank_of_Harness/pipelines/Main_Build/executions/<+pipeline.executionId>/pipeline
