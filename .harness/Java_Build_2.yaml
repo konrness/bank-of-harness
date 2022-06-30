@@ -1,0 +1,40 @@
+template:
+    name: Java Build
+    identifier: Java_Build
+    versionLabel: "2"
+    type: Stage
+    projectIdentifier: Bank_of_Harness
+    orgIdentifier: default
+    spec:
+        type: CI
+        spec:
+            cloneCodebase: true
+            infrastructure:
+                useFromStage: Clone
+            execution:
+                steps:
+                    - step:
+                          type: Run
+                          name: Java Tests
+                          identifier: Java_Tests
+                          spec:
+                              connectorRef: Docker_Hub_Konr
+                              image: maven:3.8.5-openjdk-17
+                              shell: Sh
+                              command: |-
+                                  echo "testing <+stage.variables.service>..."
+
+                                  cd src/<+stage.variables.service>
+
+                                  mvn test
+                              reports:
+                                  type: JUnit
+                                  spec:
+                                      paths:
+                                          - src/<+stage.variables.service>/target/surefire-reports/*.xml
+                              envVariables:
+                                  SERVICE: <+stage.variables.service>
+        variables:
+            - name: service
+              type: String
+              value: <+input>
