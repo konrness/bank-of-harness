@@ -15,6 +15,8 @@ template:
                     connectorRef: konrse_GKE_Bank_of_Harness
                     namespace: bankofharness-builds
                     automountServiceAccountToken: true
+                    nodeSelector: {}
+                    os: Linux
             execution:
                 steps:
                     - step:
@@ -26,9 +28,9 @@ template:
                               image: python:3.8
                               shell: Sh
                               command: |
-                                  echo "testing <+Build.variables.service>..."
+                                  echo "testing <+stage.variables.service>..."
 
-                                  cd src/<+Build.variables.service>
+                                  cd src/<+stage.variables.service>
 
                                   pip install --upgrade pip
                                   pip install -r requirements.txt
@@ -37,9 +39,9 @@ template:
                                   type: JUnit
                                   spec:
                                       paths:
-                                          - src/<+Build.variables.service>/report.xml
+                                          - src/<+stage.variables.service>/report.xml
                               envVariables:
-                                  SERVICE: <+Build.variables.service>
+                                  SERVICE: <+stage.variables.service>
                           failureStrategies: []
         variables:
             - name: service
