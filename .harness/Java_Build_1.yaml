@@ -31,7 +31,7 @@ template:
                                   type: JUnit
                                   spec:
                                       paths:
-                                          - src/<+stage.variables.service>/report.xml
+                                          - src/<+stage.variables.service>/target/surefire-reports/*.xml
                               envVariables:
                                   SERVICE: <+stage.variables.service>
         variables:
