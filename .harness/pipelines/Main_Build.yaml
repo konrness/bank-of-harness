@@ -41,6 +41,9 @@ pipeline:
                                 - name: service
                                   type: String
                                   value: contacts
+                                - name: runTests
+                                  type: String
+                                  value: "true"
               - stage:
                     name: User Service - Build
                     identifier: User_Service_Build
@@ -53,6 +56,9 @@ pipeline:
                                 - name: service
                                   type: String
                                   value: userservice
+                                - name: runTests
+                                  type: String
+                                  value: "true"
               - stage:
                     name: Frontend - Build
                     identifier: Frontend_Build
@@ -65,6 +71,9 @@ pipeline:
                                 - name: service
                                   type: String
                                   value: frontend
+                                - name: runTests
+                                  type: String
+                                  value: "false"
         - parallel:
               - stage:
                     name: Balance Reader - Build
