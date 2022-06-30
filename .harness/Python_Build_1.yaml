@@ -59,6 +59,9 @@ template:
                               envVariables:
                                   SERVICE: <+stage.variables.service>
                           failureStrategies: []
+                          when:
+                              stageStatus: Success
+                              condition: <+stage.variables.runTests> == "true"
         variables:
             - name: service
               type: String
