@@ -111,30 +111,55 @@ pipeline:
                                 - name: service
                                   type: String
                                   value: ledgerwriter
-        - stage:
-              name: Accounts DB - Build
-              identifier: Accounts_DB_Build
-              type: CI
-              spec:
-                  cloneCodebase: true
-                  infrastructure:
-                      useFromStage: Clone
-                  execution:
-                      steps:
-                          - step:
-                                type: BuildAndPushDockerRegistry
-                                name: Docker Build and Push
-                                identifier: Docker_Build_and_Push
-                                spec:
-                                    connectorRef: Docker_Hub_Konr
-                                    repo: konrness/bank-of-harness-accounts-db
-                                    tags:
-                                        - <+pipeline.sequenceId>
-                                    dockerfile: src/accounts-db/Dockerfile
-                                    context: src/accounts-db
-                                    labels:
-                                        pipeline: <+pipeline.name>
-                                        build_url: https://app.harness.io/ng/#/account/6C9qo5gJSdK7gb-ngOtpCw/ci/orgs/default/projects/Bank_of_Harness/pipelines/Main_Build/executions/<+pipeline.executionId>/pipeline
+              - stage:
+                    name: Ledger Monolith - Build
+                    identifier: Ledger_Monolith_Build
+                    template:
+                        templateRef: Java_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: ledgermonolith
+              - stage:
+                    name: Transaction History - Build
+                    identifier: Transaction_History_Build
+                    template:
+                        templateRef: Java_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: transactionhistory
+        - parallel:
+              - stage:
+                    name: Accounts DB - Build
+                    identifier: Accounts_DB_Build
+                    template:
+                        templateRef: DB_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: accounts-db
+              - stage:
+                    name: Ledger DB - Build
+                    identifier: Ledger_DB_Build
+                    template:
+                        templateRef: DB_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: ledger-db
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
