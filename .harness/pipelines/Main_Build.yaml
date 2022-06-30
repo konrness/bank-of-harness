@@ -111,6 +111,29 @@ pipeline:
                                 - name: service
                                   type: String
                                   value: ledgerwriter
+        - stage:
+              name: Accounts DB - Build
+              identifier: Accounts_DB_Build
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      useFromStage: Clone
+                  execution:
+                      steps:
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: Docker Build and Push
+                                identifier: Docker_Build_and_Push
+                                spec:
+                                    connectorRef: Docker_Hub_Konr
+                                    repo: konrness/bank-of-harness-accounts-db
+                                    tags:
+                                        - <+pipeline.sequenceId>
+                                    context: src/accounts-db
+                                    labels:
+                                        pipeline: <+pipeline.name>
+                                        build_url: https://app.harness.io/ng/#/account/6C9qo5gJSdK7gb-ngOtpCw/ci/orgs/default/projects/Bank_of_Harness/pipelines/Main_Build/executions/<+pipeline.executionId>/pipeline
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
