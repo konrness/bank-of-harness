@@ -40,10 +40,12 @@ template:
                           identifier: Build_Image
                           spec:
                               connectorRef: Docker_Hub_Konr
-                              image: maven:3.6.3
+                              image: maven:3.8.5-openjdk-17
                               shell: Bash
                               command: |-
-                                  mvn jib:build \
+                                  cd <+stage.variables.service>
+
+                                  mvn compile jib:build \
                                       -Djib.to.image=konrness/bank-of-harness-<+stage.variables.service>:<+pipeline.sequenceId>
                                       -Djib.to.auth.username=$DOCKER_USERNAME \
                                       -Djib.to.auth.password=$DOCKER_PASSWORD
