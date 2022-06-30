@@ -4,29 +4,6 @@ pipeline:
     allowStageExecutions: false
     stages:
         - stage:
-              name: Build
-              identifier: Build
-              type: CI
-              spec:
-                  cloneCodebase: true
-                  infrastructure:
-                      type: KubernetesDirect
-                      spec:
-                          connectorRef: konrse_GKE_Bank_of_Harness
-                          namespace: bankofharness-builds
-                          automountServiceAccountToken: false
-                  execution:
-                      steps:
-                          - step:
-                                type: Run
-                                name: ls
-                                identifier: ls
-                                spec:
-                                    connectorRef: Docker_Hub_Konr
-                                    image: alpine
-                                    shell: Sh
-                                    command: ls
-        - stage:
               name: Build Java Test
               identifier: Build_Java_Test
               template:
@@ -41,8 +18,3 @@ pipeline:
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
-    properties:
-        ci:
-            codebase:
-                connectorRef: konrnessbankofharness
-                build: <+input>
