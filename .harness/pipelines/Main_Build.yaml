@@ -63,18 +63,31 @@ pipeline:
                                 - name: service
                                   type: String
                                   value: frontend
-        - stage:
-              name: Balance Reader - Build
-              identifier: Balance_Reader_Build
-              template:
-                  templateRef: Java_Build
-                  versionLabel: "1"
-                  templateInputs:
-                      type: CI
-                      variables:
-                          - name: service
-                            type: String
-                            value: balancereader
+        - parallel:
+              - stage:
+                    name: Balance Reader - Build
+                    identifier: Balance_Reader_Build
+                    template:
+                        templateRef: Java_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: balancereader
+              - stage:
+                    name: Ledger Writer - Build
+                    identifier: Ledger_Writer_Build
+                    template:
+                        templateRef: Java_Build
+                        versionLabel: "1"
+                        templateInputs:
+                            type: CI
+                            variables:
+                                - name: service
+                                  type: String
+                                  value: ledgerwriter
     projectIdentifier: Bank_of_Harness
     orgIdentifier: default
     tags: {}
