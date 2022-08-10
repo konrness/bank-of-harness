@@ -141,6 +141,7 @@ def create_app():
                                history=transaction_list,
                                balance=balance,
                                name=display_name,
+                               username=username,
                                account_id=account_id,
                                contacts=contacts,
                                message=request.args.get('msg', None),
