@@ -18,7 +18,7 @@ featureFlags:
       environments:
       - identifier: Dev
         default:
-          onVariation: "true"
+          onVariation: "false"
           offVariation: "false"
         state: "off"
         targetRules:
