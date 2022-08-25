@@ -20,7 +20,7 @@ featureFlags:
         default:
           onVariation: "true"
           offVariation: "false"
-        state: "off"
+        state: "on"
         targetRules:
         - targets:
           - identifier: "1011226111"
