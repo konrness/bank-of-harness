@@ -21,6 +21,10 @@ featureFlags:
           onVariation: "true"
           offVariation: "false"
         state: "off"
+        targetRules:
+        - targets:
+          - identifier: "1011226111"
+          variation: "true"
   - flag:
       name: Test
       identifier: Test
