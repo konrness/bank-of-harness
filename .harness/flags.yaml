@@ -24,7 +24,7 @@ featureFlags:
         targetRules:
         - targets:
           - identifier: "1011226111"
-          variation: "false"
+          variation: "true"
   - flag:
       name: Test
       identifier: Test
