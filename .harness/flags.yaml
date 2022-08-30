@@ -21,5 +21,9 @@ featureFlags:
           onVariation: "false"
           offVariation: "false"
         state: "on"
+        targetRules:
+        - targets:
+          - identifier: "1011226111"
+          variation: "true"
   projectIdentifier: Bank_of_Harness
   orgIdentifier: default
