@@ -1,4 +1,19 @@
 featureFlags:
-  flags: []
+  flags:
+  - flag:
+      name: Send Payment
+      identifier: Send_Payment
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
   projectIdentifier: Bank_of_Harness
   orgIdentifier: default
