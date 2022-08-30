@@ -21,6 +21,15 @@ featureFlags:
           onVariation: "false"
           offVariation: "false"
         state: "on"
+        rules:
+        - priority: 0
+          serve:
+            serveVariation: "true"
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - QA_Testers
         targetRules:
         - targets:
           - identifier: "1011226111"
