@@ -1,6 +1,31 @@
 featureFlags:
   flags:
   - flag:
+      name: New Module
+      identifier: New_Module
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: Hide
+          offVariation: Green
+        variations:
+        - identifier: Hide
+          value: "false"
+        - identifier: Red
+          value: red
+        - identifier: Blue
+          value: balue
+        - identifier: Green
+          value: green
+      environments:
+      - identifier: Dev
+        default:
+          onVariation: Hide
+          offVariation: Green
+        state: "off"
+  - flag:
       name: Send Payment
       identifier: Send_Payment
       description: ""
