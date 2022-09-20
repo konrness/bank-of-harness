@@ -24,7 +24,7 @@ featureFlags:
         default:
           onVariation: v1
           offVariation: "Off"
-        state: "off"
+        state: "on"
   - flag:
       name: Send Payment
       identifier: Send_Payment
