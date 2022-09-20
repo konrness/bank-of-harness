@@ -48,5 +48,20 @@ featureFlags:
           onVariation: "false"
           offVariation: "false"
         state: "on"
+        rules:
+        - priority: 0
+          serve:
+            distribution:
+              bucketBy: identifier
+              variations:
+              - weight: 5
+                variation: "true"
+              - weight: 95
+                variation: "false"
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - QA_Testers
   projectIdentifier: Bank_of_Harness
   orgIdentifier: default
