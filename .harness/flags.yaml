@@ -25,6 +25,15 @@ featureFlags:
           onVariation: v1
           offVariation: "Off"
         state: "on"
+        rules:
+        - priority: 0
+          serve:
+            serveVariation: v2
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - QA_Team
   - flag:
       name: Send Payment
       identifier: Send_Payment
