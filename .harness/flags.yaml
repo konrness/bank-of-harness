@@ -1,40 +1,6 @@
 featureFlags:
   flags:
   - flag:
-      name: Module Experience
-      identifier: Module_Experience
-      description: ""
-      permanent: false
-      spec:
-        type: string
-        default:
-          onVariation: v1
-          offVariation: "Off"
-        variations:
-        - identifier: "Off"
-          value: "false"
-        - identifier: v1
-          value: v1
-        - identifier: v2
-          value: v2
-        - identifier: v3
-          value: v3
-      environments:
-      - identifier: Dev
-        default:
-          onVariation: v1
-          offVariation: "Off"
-        state: "on"
-        rules:
-        - priority: 0
-          serve:
-            serveVariation: v2
-          clauses:
-          - attribute: ""
-            op: segmentMatch
-            values:
-            - QA_Team
-  - flag:
       name: Send Payment
       identifier: Send_Payment
       description: ""
