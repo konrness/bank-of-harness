@@ -45,7 +45,7 @@ featureFlags:
       environments:
       - identifier: Dev
         default:
-          onVariation: "true"
+          onVariation: "false"
           offVariation: "false"
         state: "on"
   projectIdentifier: Bank_of_Harness
