@@ -19,6 +19,8 @@ featureFlags:
           value: balue
         - identifier: Green
           value: green
+        - identifier: v2
+          value: v2
       environments:
       - identifier: Dev
         default:
