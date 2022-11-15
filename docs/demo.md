@@ -39,7 +39,19 @@ We recommend you test and build directly on Kubernetes, from your local environm
 
 You can use the `skaffold` tool to build and deploy your code to the GKE cluster in your project. 
 
-Make sure that you export `PROJECT_ID` as an environment variable (or add to your `.bashrc` before running either of these commands)
+### Setup Docker Desktop Kubernetes environment
+
+Set your kubectl context to be Docker Desktop:
+
+```
+kubectl config set-context docker-desktop
+```
+
+Set your default Docker Hub repository:
+
+```
+skaffold config set default-repo <yourdockerhubusername>
+```
 
 ### Option 1 - Build and deploy continuously 
 
