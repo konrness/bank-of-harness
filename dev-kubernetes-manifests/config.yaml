@@ -20,6 +20,7 @@ metadata:
 data:
   LOCAL_ROUTING_NUM: "883745000"
   PUB_KEY_PATH: "/root/.ssh/publickey"
+  HARNESS_SDK_KEY: "c04150c9-ea1b-4012-af4c-34a830712206"
 # [END gke_dev_kubernetes_manifests_config_configmap_environment_config]
 ---
 # [START gke_dev_kubernetes_manifests_config_configmap_service_api_config]

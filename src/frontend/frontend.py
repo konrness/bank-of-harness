@@ -525,6 +525,7 @@ def create_app():
     app.config['TOKEN_NAME'] = 'token'
     app.config['TIMESTAMP_FORMAT'] = '%Y-%m-%dT%H:%M:%S.%f%z'
     app.config['SCHEME'] = os.environ.get('SCHEME', 'http')
+    app.config['HARNESS_SDK_KEY'] = os.environ.get('HARNESS_SDK_KEY')
 
     # where am I?
     metadata_server = os.getenv('METADATA_SERVER', 'metadata.google.internal')
