@@ -93,3 +93,14 @@ If you're adding a new feature to one or more of the Java services (`ledgerwrite
 
 
 2. Re-run `skaffold dev` or `skaffold run` to trigger a Jib container build using Maven and the updated pom file. 
+
+
+### Deploying to GKE Cluster
+
+```
+export PROJECT_ID=[myprojectid]
+
+skaffold build --file-output=deploy/artifacts.json --default-repo=gcr.io/${PROJECT_ID}/bank-of-harness --push=true
+skaffold render --build-artifacts=deploy/artifacts.json --output=deploy/manifests.yaml --namespace=bank-of-harness
+kubectl apply -f deploy/manifests.yaml
+```
