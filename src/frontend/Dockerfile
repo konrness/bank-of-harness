@@ -13,11 +13,10 @@
 # limitations under the License.
 
 # Use the official Python docker container, slim version, running Debian
-FROM cgr.dev/chainguard/python:latest
+FROM cgr.dev/chainguard/python:latest-dev
 
 LABEL org.opencontainers.image.base.name="cgr.dev/chainguard/python"
-LABEL org.opencontainers.image.base.tag="latest"
-LABEL org.opencontainers.image.base.digest="sha256:2a8c7d9efdae9b636de80a187a4ce31374ffb3883a7be06232d25a96e8538bf4"
+LABEL org.opencontainers.image.base.tag="latest-dev"
 
 # Set our working directory
 WORKDIR /app
@@ -27,6 +26,10 @@ ENV PYTHONUNBUFFERED=0
 
 # explicitly set a fallback log level in case no log level is defined by Kubernetes
 ENV LOG_LEVEL info
+
+# Added for Chainguard
+RUN python -m venv venv
+ENV PATH="/app/venv/bin":$PATH
 
 # Install dependencies.
 COPY requirements.txt .
