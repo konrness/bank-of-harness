@@ -15,6 +15,10 @@
 # Use the official Python docker container, slim version, running Debian
 FROM python:3.10-slim
 
+LABEL org.opencontainers.image.base.name="python"
+LABEL org.opencontainers.image.base.tag="3.10-slim"
+LABEL org.opencontainers.image.base.digest="sha256:2a8c7d9efdae9b636de80a187a4ce31374ffb3883a7be06232d25a96e8538bf4"
+
 # Set our working directory
 WORKDIR /app
 
